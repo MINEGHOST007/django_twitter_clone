@@ -1,0 +1,33 @@
+{% extends 'registration/baser.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<script>
+    alert(" You are already logged in ");
+</script>
+<div style="text-align: right;padding-inline-end: 10px;padding-top: 5px;">
+    <a href="{% url 'home' %}" style="text-align: right;font-size: 1rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;&nbsp;&nbsp;go back</a>
+</div>
+{% else %}
+<div class="main_box">
+    <h1>Login</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class ="input-box">
+            <span class="icon"><i class="fa-solid fa-envelope" style="background-color: rgba(0, 0, 0, 0); color: aliceblue;"></i></span>
+            <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username" required>
+            <label for="id_username">Username</label>
+        </div>
+        <div class ="input-box">
+            <span class="icon"><i class="fa-solid fa-lock" style="background-color: rgba(0, 0, 0, 0);color: aliceblue;"></i></span>
+            <input type="password" name="password" autocomplete="current-password" required id="id_password" required>
+            <label for="id_password">Password</label>
+        </div>
+        <button class="" type="submit">Login</button>
+        <div class="register">
+            <p>Don't have an account?&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'register' %}">Register now</a> </p>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

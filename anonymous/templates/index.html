@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANONYMOUS</title>
+    <link rel="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome- 
+    free@5.15.4/css/fontawesome.min.css">
+    <script src="https://kit.fontawesome.com/6f691eeda2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <style>
+    *{
+        margin: 0;
+        color:azure;
+        background-color: black;
+        box-sizing: border-box;
+        transition: all 500ms ease-out;
+    }
+    .vertical_line{
+        min-height: 100vh;
+        height: auto;
+        border: 1px solid rgba(255, 255, 255, 0.116);
+    }
+    .horizontal_line{
+        position: relative;
+        left: -1vw;
+        width: 36vw auto;
+        border: 1px solid rgba(255, 255, 255, 0.116);
+    }
+    
+    .Home{
+        display: flex;
+        flex-direction: row;
+        width: 80vw;
+        padding: 5vw;
+        margin-inline: auto;
+        padding-top: 0;
+    }
+    .container_menu{
+        width: 25vw;
+        text-align: right;
+        justify-content: right;
+        padding-right: 2vw;
+        flex-shrink: 0;
+        flex: 0.25;
+        border-right:  1px solid rgba(255, 255, 255, 0.473);
+        min-height: 100vh;
+        height: auto;
+        overflow: -moz-hidden-unscrollable;
+        position: sticky;
+    }
+    .container_menu li,.container_menu a,ul{
+        justify-content: space-around;
+        margin-inline: 1.5vw auto;
+        margin-block-end: 0.2vw;
+        padding: 0px;
+        border-radius: 20px;
+        text-decoration: none;
+        list-style: none;
+        font-size: 1.5rem;
+    }
+    .container_menu a{
+        width: fit-content;
+        display: inline-flex;
+        padding: 12.5px;
+        cursor: pointer;
+    }
+    .container_menu li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .container_menu a i{
+        background-color: rgba(240, 248, 255, 0);
+    }
+    .container_menu a:hover{
+        background-color: rgba(240, 248, 255, 0.171);
+        color: #50b7f5;
+        transition: all 100ms ease-out;
+    }
+    .container_blogs{
+    padding-block-end: 0.5vw;
+    /*border: 2px solid rgba(255, 255, 255, 0.116);*/
+    min-width: fit-content ;
+    margin-inline-end: 10vw;
+    justify-content: center;
+    flex-grow: 1;
+    border-right:  1px solid rgba(255, 255, 255, 0.473);
+    flex: 0.5;
+    }
+    .container_profile{
+        width: 25vw;
+    }
+    .blogpost{
+    flex: 1;
+    margin-inline-end: 10vw;
+    padding: 2vw;
+    min-width: 25vw;
+    width: fit-content;
+    border-bottom:  1px solid rgba(255, 255, 255, 0.473);
+    }
+    .blogpost h4{
+        font-weight: 800;
+        /* font-size: 2rem; */
+    }
+    .header{
+        padding: 6px;
+        padding-inline-start: 1vw;
+        font-weight: 900;
+        font-size: 2rem; 
+        position: sticky;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.473);
+    }
+    .menu_opt{
+        display: none;
+        transition: all 500ms ease-out;
+    }
+    @media (min-width : 800px) {
+        .menu_opt{
+        display: block;
+        background-color: rgba(240, 248, 255, 0);
+    }
+    }
+    .active a p, .active a i{
+        color: #50b7f5;
+    }
+    body{
+        margin-inline: auto;
+        display: flex;
+    }
+    .tweetBox img{
+        margin: 0.5vw;
+        border-radius: 50%;
+        max-height: 40px;
+        max-width: 40px;
+    }
+    .tweetBox{
+        padding-bottom: 10px;
+        border-bottom: 8px solid rgba(255, 255, 255, 0.473);
+
+    }
+    .tweetBox form{
+        display: flex;
+        flex-direction: column;
+        padding: 2px;
+    }
+    .tweetBox input{
+        border: none;
+        padding: 20px;
+        display: flex;
+        flex:1;
+    }
+
+    </style>
+    <h1>GHOSTOO7 & VINNI</h1>
+    <div class="Home">
+        <div class="container_menu">
+            <ul>
+                <li>
+                    <a href="" ><i class="fa-brands fa-twitter" style="color: #50b7f5;"></i></a>
+                </li>
+                <li class="active">
+                    <a href="" class="active" ><i class="fa-solid fa-house-crack"></i><p class="menu_opt">&nbsp;&nbsp;Home</p></a>
+                </li>
+                <li>
+                    <a href=""><i class="fa-solid fa-magnifying-glass"></i><p class="menu_opt">&nbsp;&nbsp;Explore</p></a>
+                </li>
+                <li>
+                    <a href=""><i class="fa-solid fa-id-card"></i><p class="menu_opt">&nbsp;&nbsp;Profile</p></a>
+                </li>
+                <li>
+                    <a href=""><i class="fa-solid fa-book-bookmark"></i><p class="menu_opt">&nbsp;&nbsp;Bookmarks</p></a>
+                </li>
+            </ul>
+        </div>
+        <div class="container_blogs">
+            <div class="header">
+                <header>Home</header>
+            </div>
+            <div class="tweetBox">
+                <form>
+                    <img src="https://images.squarespace-cdn.com/content/v1/5446f93de4b0a3452dfaf5b0/1626904421257-T6I5V5IQ4GI2SJ8EU82M/Above+Avalon+Neil+Cybart">
+                    <input type="text" placeholder="Share everything Vinni's Here">
+                </form>
+            </div>
+            <ul>
+                {% for post in object_list %}
+                    <div class="blogpost">
+                        <div class="post"></div>
+                        <li>
+                            <h4>{{post.title}} - {{post.author}}</h4>
+                        </li>
+                        <a href="{% url 'detail_view' post.pk %}">Read more ....</a>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="container_profile"></div>
+    </div>
+</body>
+</html>
+
+ -->
+{% block content %}
+
+<ul>
+    {% for post in object_list %}
+        <div class="blogpost">
+            <div class="post"></div>
+            <li>
+                <h4>{{ post.title }}&nbsp;&nbsp;</h4><br><a style="text-decoration: none;" href="{% url 'profile' post.author.id %}"><h6  style="text-align: right;" >@{{post.author}}<small style="opacity: 0.5;"> on {{post.postdate}}</small></h6></a>
+            </li>
+            <br>
+            <p style="font-size: 1rem; color: rgb(255, 255, 255);text-decoration: none; opacity: 0.5;">category: <strong ><a style="text-decoration: none;" ><i>{{ post.categories }}</i></a></strong></p>
+            <a class="read" href="{% url 'detail_view' post.pk %} " style="font-size: 1rem;text-decoration: none;">read more ....</a>
+        </div>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+

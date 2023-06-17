@@ -1,0 +1,45 @@
+{% extends 'registration/baser.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<script>
+    alert(" You are already logged in ");
+</script>
+<div style="text-align: right;padding-inline-end: 10px;padding-top: 5px;">
+    <a href="{% url 'home' %}" style="text-align: right;font-size: 1rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;&nbsp;&nbsp;go back</a>
+</div>
+{% else %}
+<div class="main_box">
+    <h1>Register</h1>
+    <div class="form_group">
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+            <div class ="input-box">
+                <span class="icon"><i class="fa-solid fa-envelope" style="background-color: rgba(0, 0, 0, 0); color: aliceblue;"></i></span>
+                <input  type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username" required>
+                <label for="id_username">Username</label>
+            </div>
+            <span class="helptext"><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul></span>
+            <div class ="input-box">
+                <span class="icon"><i class="fa-solid fa-lock" style="background-color: rgba(0, 0, 0, 0);color: aliceblue;"></i></span>
+                <input type="password" name="password1" autocomplete="new-password" required id="id_password1">
+                <label for="id_password1" >Password</label>
+            </div>
+            <span class="helptext">Enter the same password as before, for verification.</span>
+            <div class ="input-box">
+                <span class="icon"><i class="fa-solid fa-lock" style="background-color: rgba(0, 0, 0, 0);color: aliceblue;"></i></span>
+                <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
+                <label for="id_password2" >Confirm Password</label>
+            </div>
+            <button class="" type="submit">Register</button>
+        </form>
+        <br>
+        <div class="register">
+            <p>Already have an account?&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'login' %}">Login</a> </p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

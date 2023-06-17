@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="tweetBox" >
+    <form method="POST" style="display: flex; flex-direction: column;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button class="tweet_btn" type="submit" name="share" style="text-align: center;margin-inline: auto;padding-inline: 15vw;"><i class="fa-solid fa-infinity" style="background-color: rgba(240, 248, 255, 0);"></i>&nbsp;&nbsp;add comment</button>
+    </form>
+</div>
+
+<div style="text-align: right;padding-inline-end: 10px;padding-top: 10px;">
+    <a class="tweet_btn" href="{% url 'home' %}" style=" margin-inline-end: 0.5vw; text-align: right;font-size: 1rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward" style="background-color: rgba(0, 0, 0, 0);"></i>&nbsp;&nbsp;&nbsp;&nbsp;go back</a>
+</div>
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+
+        let comment = document.getElementById("id_post");
+        console.log(comment);
+        comment.value = "{{ pk }}";
+        comment.style.display = "none";
+        let lc = document.querySelector("label[for='id_post']");
+        lc.style.display = "none";
+
+    });
+</script>
+{% endblock %}

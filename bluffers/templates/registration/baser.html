@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listen</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome- 
+    free@5.15.4/css/fontawesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            color: black;
+        }
+        section{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        section .left{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(black , rgb(0, 0, 34));
+        }
+        .bubbles{
+            display: flex;
+        }
+        .bubbles span{
+            width: 20px;
+            height: 20px;
+            background: #4fc3dc;
+            margin: 0 2vw;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px #4fc3dc44, 0 0 40px #4fc3dc, 0 0 100px #4fc3dc;
+            animation: animate 15s linear infinite;
+        }
+        .bubbles span:nth-child(even){
+            background: #ff2d75;
+            box-shadow: 0 0 0 5px #ff2d7544, 0 0 40px #ff2d75, 0 0 100px #ff2d75;
+        }
+        @keyframes animate{
+            0%{
+                transform: translateY(100vh) scale(0);
+            }
+            100%{
+                transform: translateY(-10vh) scale(1);
+            }
+        }
+        section .right{
+            position: absolute;
+            z-index: 100;
+            top:0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1));
+            background-position: center;
+        }
+        .container{
+            position: relative;
+            width: fit-content;
+            height: auto;
+            backdrop-filter: blur(10px);
+            background: transparent;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.336);
+            padding: 30px;
+            box-sizing: border-box;
+            transform: translateY(55%);
+        }
+        .main_box{
+            width: 100%;
+        }
+        .main_box h1{
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgb(255, 255, 255);
+        }
+        .input-box,form p{
+            position: relative;
+            height: 6vh;
+            width: 100%;
+            border-bottom: 2px solid white;
+            margin: 2.5vh 0;
+        }
+        .input-box label, form p label{
+            position: absolute;
+            top: 50%;
+            left: 6px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all ease 0.4s;
+        }
+        .input-box input, form p input{
+            border:0px solid black;
+            height: 70%;
+            width: 100%;
+            background: transparent;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .input-box .icon{
+            position: absolute;
+            right: 9px;
+            font-size: 1.25rem;
+            line-height: 8vh;
+            color: aliceblue;
+        }
+        .input-box input:focus~label,
+        .input-box input:valid~label{
+            top: -5px;
+        }
+        .input-box input:focus,form p input:focus{
+            outline: none;
+            box-shadow: none;
+        }
+        form li{
+            color: aliceblue; 
+        }
+        button{
+            width: 100%;
+            border-radius: 20px;
+            padding: 5px;
+            background-color: rgba(250, 235, 215, 0);
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+            transition: all 0.2s ease-in;
+        }
+        button:hover{
+            /* background: linear-gradient(rgb(255, 255, 255),rgb(0, 0, 0)) ;  */
+            background-color: lightgray;
+            color: black;
+        }
+        .helptext,.register p,.register p a{
+            color: white;
+            font-size: 0.75rem;
+        }
+
+    </style>
+    <style>
+        .input-box input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset !important;
+            background-color: transparent !important;
+        }
+        .input-box input:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 1000px white inset !important;
+            background-color: transparent !important;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="left">
+            <div class="bubbles">
+                <span style="--i:11;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:33;"></span>
+                <span style="--i:44;"></span>
+                <span style="--i:55;"></span>
+                <span style="--i:66;"></span>
+                <span style="--i:77;"></span>
+                <span style="--i:88;"></span>
+                <span style="--i:99;"></span>
+                <span style="--i:110;"></span>
+                <span style="--i:121;"></span>
+                <span style="--i:132;"></span>
+                <span style="--i:143;"></span>
+                <span style="--i:154;"></span>
+                <span style="--i:165;"></span>
+            </div>
+        </div>
+        <div class="right">
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+    <script src="https://kit.fontawesome.com/6f691eeda2.js" crossorigin="anonymous"></script>
+    <script>
+        const bubbles = document.querySelectorAll('.bubbles span');
+        bubbles.forEach((bubble, index) => {
+            bubble.style.animationDelay = `${index * Math.random()}s`;
+        });
+    </script>
+</body>
+</html>

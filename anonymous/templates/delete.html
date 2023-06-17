@@ -1,0 +1,39 @@
+{% extends 'article_details.html' %}
+{% block popup %}
+{% if user.is_authenticated %}
+{% if user.id == object.author.id %}
+<br>
+<br>
+<hr>
+<br>
+<div class="popup" style="justify-content: center;">
+    <div>
+        <p>Are you sure you want to delete this blog ? </p>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+
+            <button class="tweet_btn" type="submit" name="share" ><i class="fa-solid fa-infinity" style="background-color: rgba(240, 248, 255, 0);"></i>&nbsp;&nbsp;Delete</button>
+        </form>
+    </div>
+</div>
+
+{% else %}
+<script>
+    alert(" You do not belong here ");
+</script>
+<div style="text-align: right;padding-inline-end: 10px;padding-top: 5px;">
+    <a href="{% url 'home' %}" style="text-align: right;font-size: 1rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;&nbsp;&nbsp;go back</a>
+</div>
+{% endif %}
+{% else %}
+<script>
+    alert(" You do not belong here ");
+</script>
+<div style="text-align: right;padding-inline-end: 10px;padding-top: 5px;">
+    <a href="{% url 'home' %}" style="text-align: right;font-size: 1rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;&nbsp;&nbsp;go back</a>
+</div>
+{% endif %}
+{% endblock %}
+
+

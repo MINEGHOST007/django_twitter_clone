@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="blogpost">
+    <h1 style="text-align: center;">{{ object.title }}</h1>
+    <br>
+    <h4 style="padding: 5px;text-align: right;"> by:&nbsp;&nbsp; {{ object.author }}  <small>on&nbsp;&nbsp;{{ object.postdate}}</small></h4>
+    <hr>
+    <br>
+    <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.863);text-decoration: none;">category: {{ object.categories }}</p>
+    <br>
+    <div style="display: flex; flex-wrap: wrap; flex-direction: column;">
+        {% if object.image %}
+        <div style="justify-content: center;display: flex;">
+            <img src="{{ object.image.url }}" width="250vh" style="border-radius: 10px; border: 2px solid rgba(255, 255, 255, 0.103);margin: 10px;">
+        </div>
+        {% endif %}
+        <i><p style="font-size: 1.5rem;">{{ object.body | safe }}</p></i>
+    </div>
+    {% block popup %}
+
+    {% endblock %}
+
+</div>
+<div style=" display: flex;justify-content: flex-end;flex-wrap: wrap;text-align: right;padding-inline-end: 5px;padding-top: 10px;">
+    {% if user.is_authenticated %}
+    <form action="{% url 'book_post' object.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="books" value="{{ object.id }}">
+        {% if booked %}
+        <button class="tweet_btn booked" type="submit" ><i class="fa-solid fa-bookmark" style="background-color: rgba(240, 248, 255, 0);color: black;"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;Save</span></button>
+        {% else %}
+        <button class="tweet_btn book" type="submit"><i class="fa-solid fa-bookmark" style="background-color: rgba(240, 248, 255, 0);color: rgb(59, 59, 59);"></i><span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;Save</span></button>
+        {% endif %}
+    </form>
+    <form action="{% url 'like_post' object.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="likes" value="{{ object.id }}">
+        {% if liked %}
+        <button class="tweet_btn liked" type="submit"><i class="fa-solid fa-heart" style="background-color: rgba(240, 248, 255, 0);"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ total_likes }}<span>&nbsp;&nbsp;&nbsp;&nbsp;Like</span></button>
+        {% else %}
+        <button class="tweet_btn like" type="submit"><i class="fa-solid fa-heart" style="background-color: rgba(240, 248, 255, 0);"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ total_likes }}<span>&nbsp;&nbsp;&nbsp;&nbsp;Like</span></button>
+        {% endif %}
+    </form>
+    {% if user.id == object.author.id %}
+    <a class="tweet_btn kill" href="{% url 'delete' object.pk %}" style="font-weight: 900;margin-inline-start: 0.5vw;text-align: left;font-size: 1.25rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-eraser" style="background-color: rgba(0, 0, 0, 0);"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;delete</span></a>
+    <a class="tweet_btn add" href="{% url 'edit' object.pk %}" style="font-weight: 900;margin-inline-start: 0.5vw;text-align: left;font-size: 1.25rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-pen-ruler" style="background-color: rgba(0, 0, 0, 0);"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;edit</span></a>
+    {% else %}
+    <a class="tweet_btn deactivate" href="{% url 'delete' object.pk %}" style="font-weight: 900;margin-inline-start: 0.5vw;text-align: left;font-size: 1.25rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-eraser" style="background-color: rgba(0, 0, 0, 0);"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;delete</span></a>
+    <a class="tweet_btn deactivate" href="{% url 'edit' object.pk %}" style="font-weight: 900;margin-inline-start: 0.5vw;text-align: left;font-size: 1.25rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-pen-ruler" style="background-color: rgba(0, 0, 0, 0);"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;edit</span></a>
+    {% endif %}
+    {% else %}
+    <a class="tweet_btn deactivate" href="{% url 'delete' object.pk %}" style="font-weight: 900;margin-inline-start: 0.5vw;text-align: left;font-size: 1.25rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-eraser" style="background-color: rgba(0, 0, 0, 0);"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;delete</span></a>
+    <a class="tweet_btn deactivate" href="{% url 'edit' object.pk %}" style="font-weight: 900;margin-inline-start: 0.5vw;text-align: left;font-size: 1.25rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-pen-ruler" style="background-color: rgba(0, 0, 0, 0);"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;edit</span></a>
+    {% endif %}
+    <a class="tweet_btn" href="{% url 'home' %}" style="font-weight: 900;margin-inline-end: 0.5vw;text-align: right;font-size: 1.25rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward" style="background-color: rgba(0, 0, 0, 0);"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;go back</span></a>
+</div>
+
+<br>
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;Comments : </h4>
+{% if not object.comments.all %}
+<br>
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;No comments <a style="text-decoration: none; opacity: 0.75;" href="{% url 'commentt' object.pk %}"> ..... click here to add one </a></h4>
+{% else %}
+<br>
+<a style="text-decoration: none; opacity: 0.75;" href="{% url 'commentt' object.pk %}"> ..... click here to add one </a>
+{% for comment in object.comments.all %}
+<br>
+<ul style="list-style: lower-greek; color: aliceblue;">
+    <li>
+        <h6 style="text-align: center;">{{ comment.body }}</h6>
+        <br>
+        <h6 style="padding: 5px;text-align: right;"> by:&nbsp;&nbsp; {{ comment.name }} <small>on&nbsp;&nbsp;{{ comment.date_added }}</small></h6>
+    </li>
+</ul>
+<br>
+<hr style="opacity: 0.25;">
+{% endfor %}
+
+{% endif %}
+{% endblock %}

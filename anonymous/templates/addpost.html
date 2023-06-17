@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% if user.is_authenticated %}
+{% block content %}
+
+<div class="tweetBox" >
+    <form method="POST" action="{% url 'share' %}" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="tweet_btn" type="submit" name="share" style="text-align: center;margin-inline: auto;padding-inline: 15vw;"><i class="fa-solid fa-infinity" style="background-color: rgba(240, 248, 255, 0);"></i>&nbsp;&nbsp;Share</button>
+    </form>
+</div>
+
+<div style="text-align: right;padding-inline-end: 10px;padding-top: 10px;">
+    <a class="tweet_btn" href="{% url 'home' %}" style=" margin-inline-end: 0.5vw; text-align: right;font-size: 1rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward" style="background-color: rgba(0, 0, 0, 0);"></i>&nbsp;&nbsp;&nbsp;&nbsp;go back</a>
+</div>
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+        let author = document.getElementById("id_author");
+        author.value = "{{ user.id }}";
+        author.style.display = "none";
+        let label = document.querySelector("label[for='id_author']");
+        label.style.display = "none";
+    });
+</script>
+{% endblock %}
+{% else %}
+<script>
+    alert(" You do not belong here ");
+</script>
+<div style="text-align: right;padding-inline-end: 10px;padding-top: 5px;">
+    <a href="{% url 'home' %}" style="text-align: right;font-size: 1rem; color: rgba(250, 235, 215, 0.795);text-decoration: none;"><i class="fa-solid fa-backward"></i>&nbsp;&nbsp;&nbsp;&nbsp;go back</a>
+</div>
+{% endif %}

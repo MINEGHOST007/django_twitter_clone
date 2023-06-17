@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANONYMOUS</title>
+    <link rel="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome- 
+    free@5.15.4/css/fontawesome.min.css">
+    
+</head>
+<body>
+    <style>
+    *{
+        margin: 0;
+        color:azure;
+        background-color: black;
+        box-sizing: border-box;
+        transition: all 500ms ease-out;
+    }
+    .vertical_line{
+        min-height: 100vh;
+        height: auto;
+        border: 1px solid rgba(255, 255, 255, 0.116);
+    }
+    .horizontal_line{
+        position: relative;
+        left: -1vw;
+        width: 36vw auto;
+        border: 1px solid rgba(255, 255, 255, 0.116);
+    }
+    
+    .Home{
+        display: flex;
+        flex-direction: row;
+        width: 80vw;
+        padding: 5vw;
+        margin-inline: auto;
+        padding-top: 0;
+    }
+    .container_menu{
+        width: 20vw;
+        text-align: right;
+        justify-content: right;
+        padding-right: 2vw;
+        flex-shrink: 0;
+        flex: 0.25;
+        border-right:  1px solid rgba(255, 255, 255, 0.473);
+        min-height: 100vh;
+        height: auto;
+        overflow: -moz-hidden-unscrollable;
+        position: sticky;
+    }
+    .container_menu li,.container_menu a,.cats{
+        justify-content: space-around;
+        margin-inline: 1.5vw auto;
+        margin-block-end: 0.2vw;
+        padding: 0px;
+        border-radius: 20px;
+        text-decoration: none;
+        list-style: none;
+        font-size: 1.5rem;
+    }
+    ul{
+        justify-content: space-around;
+        margin-inline: auto;
+        margin-block-end: 0.2vw;
+        padding: 0px;
+        border-radius: 20px;
+        text-decoration: none;
+        list-style: none;
+        font-size: 1.5rem;
+    }
+    .container_menu a,.cats{
+        width: fit-content;
+        display: inline-flex;
+        padding: 12.5px;
+        cursor: pointer;
+    }
+    .container_menu li,.cats{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .container_menu a i{
+        background-color: rgba(240, 248, 255, 0);
+    }
+    .container_menu a:hover,.cats:hover{
+        background-color: rgba(240, 248, 255, 0.171);
+        color: #50b7f5;
+        transition: all 100ms ease-out;
+    }
+    .container_blogs{
+    max-width: 46vw;
+    min-width: 45vw;
+    padding-block-end: 0.5vw;
+    /*border: 2px solid rgba(255, 255, 255, 0.116);*/
+    justify-content: center;
+    border-right:  1px solid rgba(255, 255, 255, 0.473);
+    }
+    .container_profile{
+        width: 25vw;
+    }
+    .blogpost{
+    box-sizing: border-box;
+    margin-inline: auto;
+    flex: 1;
+    padding: 2vw;
+    min-width: 44.5vw;
+    border-bottom:  1px solid rgba(255, 255, 255, 0.473);
+    }
+    .blogpost h4{
+        font-weight: 800;
+        /* font-size: 2rem; */
+    }
+    .header{
+        padding: 6px;
+        padding-inline-start: 1vw;
+        font-weight: 900;
+        font-size: 2rem; 
+        position: sticky;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.473);
+    }
+    .menu_opt{
+        display: none;
+        transition: all 500ms ease-out;
+    }
+    @media (min-width : 900px) {
+        .menu_opt{
+        display: block;
+        background-color: rgba(240, 248, 255, 0);
+    }
+    }
+    .active a p, .active a i{
+        color: #50b7f5;
+    }
+    body{
+        margin-inline: auto;
+        display: flex;
+    }
+    .tweetBox img{
+        margin: 0.5vw;
+        border-radius: 50%;
+        max-height: 40px;
+        max-width: 40px;
+    }
+    .tweetBox{
+        padding-bottom: 10px;
+        border-bottom: 8px solid rgba(255, 255, 255, 0.473);
+
+    }
+    .tweetBox form{
+        display: flex;
+        flex-direction: column;
+        padding: 2px;
+    }
+    .tweetBox input{
+        border: none;
+        padding: 20px;
+        display: flex;
+        flex:1;
+    }
+    .tweetBox form p{
+        border: none;
+        padding-top: 5px;
+        padding-inline: 0px;
+        padding-bottom: 5px;
+        display: flex;
+        flex:1;
+        border-radius: 15px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .tweetBox #id_title, .tweetBox #id_author , .tweetBox #id_body,.tweetBox #id_categories,.tweetBox #id_name,#id_body{
+        border-radius: 10px;
+        padding: 5px;
+        border: 0.5px solid rgba(255, 255, 255, 0.185);
+    }
+    #id_body{
+        max-width: 49vw;
+        margin: 10px;
+    }
+    .input #file-upload-button{
+        padding: 7px;
+        border-radius: 15px;
+        color: white;
+        background-color:#029bfa23;
+        border: 0px solid black;
+        margin-inline: 6vw;
+    }
+    .tweetBox li{
+        margin-top: 2px;
+        padding: 8px;
+        padding-bottom: 0px;
+        font-size: 1rem;
+        color: rgba(240, 248, 255, 0.322);
+        background-color: #029bfa00;
+    }
+    .tweetBox label{
+        font-size: 1.5rem;
+    }
+    .tweet_btn,.like{
+        padding: 7px;
+        margin-inline: 1vw;
+        border-radius: 20px;
+        color: white;
+        background-color:#029bfa00;
+        border: 1px solid rgba(255, 255, 255, 0.274);
+        font-size: 1rem;
+        text-decoration: none;
+    }
+    /* .tweet_btn p{
+        visibility: hidden;
+    }
+    .tweet_btn p:hover{
+        visibility: visible;
+    } */
+    .tweet_btn span,.like span{
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .tweet_btn span,.like span{
+    transition: all 500ms ease-in-out;
+    display: none;
+    }
+
+    .tweet_btn:hover span,.like:hover span{
+    display: inline;
+    }
+    .tweet_btn:hover{
+        background-color:#029bfa;
+    }
+    .like:hover,.liked{
+        background-color: #ff2d75;
+        color: white;
+    }
+    .kill:hover{
+        background-color: red;
+        color: white;
+    }
+    .add:hover{
+        background-color:  #5f24ff;
+        color: white;
+    }
+    .booked{
+        background-color: white;
+        color: black;
+    }
+    .book:hover{
+        background-color: white;
+        color: black;
+    }
+    .book{
+        color: black;
+    }
+
+    @media (max-width:500px) {
+        .container_blogs{
+            padding: 5px;
+            min-width: 60vw;
+        }
+        .Home{
+            margin-inline-start: 1vw;
+            padding-inline-start:0 ;
+        }
+        .container_menu{
+            padding-inline-end: 2.5vw;
+        }
+        ul{
+            margin: 0px auto;
+        }
+        .icccon a{
+            text-align: left;
+            font-size: 1rem;
+            scale:0.6;
+        }
+    }
+    .deactivate{
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    .read:hover{
+        color: rgb(255, 255, 255);
+
+    }
+    .read{
+        color: rgba(250, 235, 215, 0.377);
+        transition: all 0.1s ease-in;
+        font-weight: 900;
+    }
+
+    </style>
+    <!-- <h1>GHOSTOO7 & VINNI</h1> -->
+    <div class="Home">
+        <div class="container_menu">
+            <ul>
+                <li class="icccon">
+                    <a href="" ><i class="fa-solid fa-infinity" style="color: #50b7f5; font-size: 2.25rem;"></i></a>
+                </li>
+                <li id="homee"class="active">
+                    <a href="{% url 'home' %}" class="active" ><i class="fa-solid fa-house-crack"></i><p class="menu_opt">&nbsp;&nbsp;Home</p></a>
+                </li>
+                {% if user.is_authenticated %}
+                <li id="explore">
+                    <a href="{% url 'category' 'explore' %}"><i class="fa-solid fa-magnifying-glass"></i><p class="menu_opt">&nbsp;&nbsp;Explore</p></a>
+                </li>
+                <li id="book">
+                    <a href="{% url 'bookmark' user.id %}"><i class="fa-solid fa-book-bookmark"></i><p class="menu_opt">&nbsp;&nbsp;Bookmarks</p></a>
+                </li>
+                <li id="profile">
+                    <a href="{%  url 'profile' user.id %}"><i class="fa-solid fa-id-card"></i><p class="menu_opt">&nbsp;&nbsp;Profile</p></a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket" ></i><p class="menu_opt">&nbsp;&nbsp;Logout</p></a>
+                </li>
+                {% else %}
+                <li class="deactivate">
+                    <a href=""><i class="fa-solid fa-magnifying-glass"></i><p class="menu_opt">&nbsp;&nbsp;Explore</p></a>
+                </li>
+                <li class="deactivate">
+                    <a href=""><i class="fa-solid fa-book-bookmark"></i><p class="menu_opt">&nbsp;&nbsp;Bookmarks</p></a>
+                </li>
+                <li>
+                    <a href="{%  url 'login' %}"><i class="fa-solid fa-id-card"></i><p class="menu_opt">&nbsp;&nbsp;Login</p></a>
+                </li>
+                <li>
+                    <a href="{% url 'register' %}"><i class="fa-regular fa-square-plus"></i><p class="menu_opt">&nbsp;&nbsp;Register</p></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="container_blogs">
+            <div class="header">
+                <header><span id="heading">Home</span></header>
+            </div>
+            
+            <div class="tweetBox">
+                <form>
+                    <img src="https://images.squarespace-cdn.com/content/v1/5446f93de4b0a3452dfaf5b0/1626904421257-T6I5V5IQ4GI2SJ8EU82M/Above+Avalon+Neil+Cybart">
+                    <input type="text" placeholder="Share everything Vinni's Here">
+                    {% if user.is_authenticated %}
+                    <a class="tweet_btn" href="{% url 'share' %}" style="text-align: center;margin-inline: auto;padding-inline: 15vw;"><i class="fa-solid fa-infinity" style="background-color: rgba(240, 248, 255, 0);"></i>&nbsp;&nbsp;Share</a>
+                    {% endif %}
+                </form>
+            </div>
+
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        <div class="container_profile">
+            {% block profile %}
+            {% endblock %}
+        </div>
+    </div>
+    <script>
+        const menuItems = document.querySelectorAll('.container_menu li');
+        document.querySelector('.container_menu').addEventListener('click', function(event) {
+          menuItems.forEach(function(item) {
+            item.classList.remove('active');
+          });
+            const menuItem = document.getElementById("book");
+            menuItem.classList.add('active');
+        });
+        
+      </script>
+    <script src="https://kit.fontawesome.com/6f691eeda2.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
